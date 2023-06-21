@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  
-  <head>
-    <meta charset="utf-8">
-    <title>网易云音乐</title>
-    <script src="js/GetResult.js"></script>
-  </head>
-  
-  <body>
-    
-    <div style="text-align:center;">
-      <input autofocus type="text" value="海阔天空" id="ipt_search" style="width:60%;text-align:center;">
-      <button style="width:50px;" id="btn_search" onclick="search(document.getElementById('ipt_search').value, 0)">搜索</button>
-    </div>
-    
-    <div style="text-align:center;" id="div_table">
-      <table width="90%" id="tb_result" border="1" style="text-align:center;margin:0 auto;">
-        <tr>
-          <th>标题</th>
-          <th>歌手</th>
-          <th>专辑</th>
-          <th>操作</th>
-        </tr>
-      </table>
-    </div>
-    
-  </body>
-  
+
+<head>
+  <meta charset="utf-8">
+  <title>网易云音乐</title>
+  <script src="js/GetResult.js"></script>
+</head>
+
+<body>
+
+  <div style="text-align:center;">
+    <input autofocus type="text" id="ipt_search" style="width:60%;text-align:center;" disabled>
+    <script src="js/DefaultWord.js"></script>
+    <button style="width:50px;" onclick="search(document.getElementById('ipt_search').value, document.getElementById('ipt_page').value)">搜索</button>
+    <script src="js/Login.js"></script>
+    <button style="width:50px;" onclick="login()">登录</button>
+  </div>
+
+  <h3></h3>
+
+  <div style="text-align:center;">
+    <script src="js/GotoMusic.js"></script>
+    <table width="90%" id="tb_result" border="1" style="text-align:center;margin:0 auto;">
+      <tr>
+        <th>标题</th>
+        <th>歌手</th>
+        <th>专辑</th>
+        <th>操作</th>
+      </tr>
+    </table>
+  </div>
+
+  <h5></h5>
+
+  <div style="text-align:center;">
+    <script>
+      function pages(num) {
+        var pg=document.getElementById('ipt_page').value;
+        document.getElementById('ipt_page').value = +pg + num
+      }
+    </script>
+    <button onclick="pages(-1);search(document.getElementById('ipt_search').value, document.getElementById('ipt_page').value)">上一页</button>
+    <input type="number" id="ipt_page" style="width:40px;text-align:center;" value=0 min=0>
+    <button onclick="pages(1);search(document.getElementById('ipt_search').value, document.getElementById('ipt_page').value)">下一页</button>
+  </div>
+
+</body>
+
 </html>
